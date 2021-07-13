@@ -7,16 +7,20 @@ function MessageInput(props) {
 
 	const onchange = (e) => {
 		setValue(e.target.value)
-		console.log({value})
+	}
+
+	const onkeydown = (e) => {
+		if (e.code === 'Enter' || e.code === 'NumpadEnter') { onclick() }
 	}
 
 	const onclick = () => {
 		props.updateData(value, name)
+
 	}
 
 	return (
 		<div className="messageinput">
-			<input value={value} onChange={onchange} placeholder="Введите сообщение"/>
+			<input value={value} onKeyDown={onkeydown} onChange={onchange} placeholder="Введите сообщение"/>
 			<button onClick={onclick}>Отправить</button>
 		</div>		
 	)
