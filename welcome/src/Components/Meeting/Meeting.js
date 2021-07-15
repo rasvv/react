@@ -1,7 +1,7 @@
-import "./MessageInput.sass";
+import './Meeting.sass'
 import { useState } from 'react'
 
-function MessageInput(props) {
+function Meeting(props) {
 	const { name } = props
 	const [value, setValue] = useState('');
 
@@ -15,33 +15,28 @@ function MessageInput(props) {
 		}
 	}
 
-
 	const onclick = () => {
-		props.updateData(value, name)
-		setValue('')
-		// autoscroll()
+		props.updateName(value)
+		// setValue('')
 	}
 
 	return (
-		<div className="messageinput">
+		<div className="meeting">
 			<input 
-				className="messageinput-inp"
+				className="meeting-inp"
 				value={value} 
 				onKeyDown={onkeydown} 
 				onChange={onchange} 
-				placeholder="Введите сообщение" 
+				placeholder="Введите Ваше имя" 
 			/>
 			<button 
 				onClick={onclick}
-				className="messageinput-btn"
+				className="meeting-btn"
 			>
 					Отправить
 			</button>
 		</div>
-	)
+	)	
 }
 
-export default MessageInput
-
-
-
+export default Meeting;
