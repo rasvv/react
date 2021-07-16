@@ -15,11 +15,9 @@ function MessageInput(props) {
 		}
 	}
 
-
 	const onclick = () => {
 		props.updateData(value, name)
-		setValue('')
-		// autoscroll()
+		setValue('')	
 	}
 
 	return (
@@ -29,7 +27,7 @@ function MessageInput(props) {
 				value={value} 
 				onKeyDown={onkeydown} 
 				onChange={onchange} 
-				placeholder="Введите сообщение" 
+				placeholder={ props.placeholder } 
 			/>
 			<button 
 				onClick={onclick}
