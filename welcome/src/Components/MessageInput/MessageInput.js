@@ -1,5 +1,7 @@
-import "./MessageInput.sass";
+import "./MessageInput.sass"
 import { useState } from 'react'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 
 function MessageInput(props) {
 	const { name } = props
@@ -22,19 +24,39 @@ function MessageInput(props) {
 
 	return (
 		<div className="messageinput">
-			<input 
+			{/* <TextField id="standard-search" label="Search field" type="search" /> */}
+  		<TextField 
+				id="standard-search" 
+				label={ props.placeholder } 
+				// variant="outlined"
+				value={value} 
+				onKeyDown={onkeydown} 
+				onChange={onchange} 
+				// placeholder={ props.placeholder } 
+				autoFocus
+			/>
+
+			{/* <input 
 				className="messageinput-inp"
 				value={value} 
 				onKeyDown={onkeydown} 
 				onChange={onchange} 
 				placeholder={ props.placeholder } 
-			/>
-			<button 
+			/> */}
+			<Button 
+				variant="contained" 
+				color="primary"
+				size="large"
+				onClick={onclick}
+			>
+				Отправить
+			</Button>
+			{/* <button 
 				onClick={onclick}
 				className="messageinput-btn"
 			>
 					Отправить
-			</button>
+			</button> */}
 		</div>
 	)
 }

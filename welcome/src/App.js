@@ -3,6 +3,7 @@ import { useState } from 'react'
 import MessageList from './Components/MessageList/MessageList'
 import MessageInput from './Components/MessageInput/MessageInput'
 import Message from './Components/Message/Message'
+import List from './Components/ChatsList/List'
 // import Meeting from './Components/Meeting/Meeting'
 
 function App(props) {
@@ -13,7 +14,7 @@ function App(props) {
 		setMessageList(messageList => [...messageList, { text: message, author: name, curtime: new Date().toLocaleTimeString() }])
 	}
 
-	const AddName = (name) => {
+	const addName = (name) => {
 		setName(name)
 		document.querySelectorAll('.toggled').forEach((comp) => comp.classList.toggle('hidden')) 
 	}
@@ -26,14 +27,16 @@ function App(props) {
 			<div className="meeting-body toggled">
 				Давайте познакомимся
 				< MessageInput 
-					updateData={AddName} 
+					updateData={addName} 
 					name={name} 
 					placeholder="Введите Ваше имя"
 				/>
+
 			</div>
 			<main className='app-main toggled hidden'>
 				<div className="leftpanel">
 					< Message 	name = { name } />
+					<List/>
 				</div>
 				<div className="rightpanel">
 					<div className="messagebox">

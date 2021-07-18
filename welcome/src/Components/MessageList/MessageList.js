@@ -1,6 +1,7 @@
 import './messagelist.sass'
 import React from 'react'
 
+
 function MessageList(props) {
 	const messageList = props.array
 
@@ -22,7 +23,7 @@ function MessageList(props) {
 
 	return (
 		messageList.map((message) =>
-			<div className={message.author === "robot" ? "mes left" : "mes"}>
+			<div key={ props.date } className={message.author === "robot" ? "mes left" : "mes"}>
 				<big>{message.text}</big>
 				<br />
 				<small>{message.author}  {message.curtime}</small>
