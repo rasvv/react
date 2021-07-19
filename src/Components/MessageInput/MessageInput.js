@@ -1,7 +1,6 @@
 import "./MessageInput.sass"
 import { useState } from 'react'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
+import {Button, TextField, Grid} from '@material-ui/core'
 
 function MessageInput(props) {
 	const { name } = props
@@ -13,50 +12,41 @@ function MessageInput(props) {
 
 	const onkeydown = (e) => {
 		if (e.code === 'Enter' || e.code === 'NumpadEnter') {
-			onclick()
+			handlerOnClick()
 		}
 	}
 
-	const onclick = () => {
+	const handlerOnClick = () => {
 		props.updateData(value, name)
 		setValue('')	
 	}
 
 	return (
 		<div className="messageinput">
-			{/* <TextField id="standard-search" label="Search field" type="search" /> */}
-  		<TextField 
-				id="standard-search" 
-				label={ props.placeholder } 
-				// variant="outlined"
-				value={value} 
-				onKeyDown={onkeydown} 
-				onChange={onchange} 
-				// placeholder={ props.placeholder } 
-				autoFocus
-			/>
+			<Grid container>
+				<Grid item xs={8}>
+					<TextField 
+						id="standard-search" 
+						label={ props.placeholder } 
+						value={value} 
+						onKeyDown={onkeydown} 
+						onChange={onchange} 
+						autoFocus
+					/>					
+				</Grid>
+				<Grid item xs={4}>
+					<Button 
+						variant="contained" 
+						color="primary"
+						size="large"
+						onClick={handlerOnClick}
+					>
+						Отправить
+					</Button>					
+				</Grid>
+			</Grid>
 
-			{/* <input 
-				className="messageinput-inp"
-				value={value} 
-				onKeyDown={onkeydown} 
-				onChange={onchange} 
-				placeholder={ props.placeholder } 
-			/> */}
-			<Button 
-				variant="contained" 
-				color="primary"
-				size="large"
-				onClick={onclick}
-			>
-				Отправить
-			</Button>
-			{/* <button 
-				onClick={onclick}
-				className="messageinput-btn"
-			>
-					Отправить
-			</button> */}
+
 		</div>
 	)
 }

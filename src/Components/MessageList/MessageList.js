@@ -5,10 +5,10 @@ import React from 'react'
 function MessageList(props) {
 	const messageList = props.array
 
-	const autoscroll = () => {
-		var block = document.getElementsByClassName("messagebox")[0];
-		block.scrollTop = block.scrollHeight;
-	}
+	// const autoscroll = () => {
+	// 	var block = document.getElementsByClassName("messagebox")[0];
+	// 	block.scrollTop = block.scrollHeight;
+	// }
 
 	React.useEffect(() => {
 		if (messageList.length > 0) {
@@ -18,7 +18,7 @@ function MessageList(props) {
 					props.updateData(mes['text'].split('').reverse().join(''), 'robot')
 				}, 1500)
 		}
-		autoscroll()
+		// autoscroll()
 	})
 
 	return (
