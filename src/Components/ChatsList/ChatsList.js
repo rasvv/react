@@ -1,54 +1,47 @@
-import React, { useEffect, useRef } from 'react'
 import "./ChatsList.sass"
-// import { makeStyles } from '@material-ui/core/styles'
-import { List, ListItem, ListItemText } from '@material-ui/core'
+import {useHistory} from 'react-router'
+import { List, ListItem } from '@material-ui/core'
+import { PATHS } from '../Constants'
+import Chat from '../Chat/Chat'
 
-function InteractiveList(props) {
-	const isFirstRender = useRef(true)
 
-	const [listSource] = React.useState([
-		{ 'id': 0, robot: 'Michael' },
-		{ 'id': 1, robot: 'Bob' },
-		{ 'id': 2, robot: 'Whitney' },
-		{ 'id': 3, robot: 'Jessica' },
-	])
+function ChatsList(props) {
+	const {
+		chats = [],
+		currentChat,
+		onCurrentChatChange
+	} = props
+	const history = useHistory()
 
-	const onClick = (e) => {
-		props.updateData(e.target.innerText)
+	const onChatListClick = (chat) => {
+		onCurrentChatChange(chat)
+		history.push(`${PATHS.chatsLink}/${chat.id}`)
 	}
-		
-	const onLoad = () => {
-		props.updateData(listSource[0].robot)
-	}
-	
-	useEffect(() => {
-		if(isFirstRender.current) {
-			onLoad()
-			isFirstRender.current = false
-		}
-		
-	})
-	// onLoad()
 
   return (
     <div className="chatslist" >
-			<List>
-				{listSource.map((listitem) =>
+			<List  className="app__sidebar">
+				{chats.map((chat) => (
 					<ListItem 
-						button 
-						key={listitem.id} 
-						className={ listitem.id === 0? "active": "" }
-						onClick={onClick}
-						
+						key={chat.id}
+						selected={chat.id === currentChat.id}
+						onClick={() => onChatListClick(chat)}
 					>
-						<ListItemText
-							primary={ listitem.robot }
-						/>
+						{chat.author}
 					</ListItem>
-				)}
+				))}				
 			</List>
+			<div className='app__main'>
+				<Chat 
+					chats={props.chats}
+					currentChatChat={props.currentChatChat}
+					currentChat={props.currentChat}
+					onCurrentChatChange={props.onCurrentChatChange}
+					checkChatExists={props.checkChatExists}
+				/>
+			</div>
     </div>
   )
 }
 
-export default InteractiveList
+export default ChatsList

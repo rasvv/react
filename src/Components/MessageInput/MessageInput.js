@@ -1,9 +1,9 @@
 import "./MessageInput.sass"
 import { useState } from 'react'
 import {Button, TextField, Grid} from '@material-ui/core'
+import { USER } from '../Constants'
 
 function MessageInput(props) {
-	const { name } = props
 	const [value, setValue] = useState('');
 
 	const onchange = (e) => {
@@ -17,7 +17,7 @@ function MessageInput(props) {
 	}
 
 	const handlerOnClick = () => {
-		props.updateData(value, name)
+		props.updateData(value, `${USER.me}`)
 		setValue('')	
 	}
 
