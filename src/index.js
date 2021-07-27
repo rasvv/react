@@ -5,15 +5,18 @@ import './index.sass'
 import { BrowserRouter } from 'react-router-dom'
 // import Router from "./Components/Router/Router"
 import App from "./Components/App/App"
-
+import { Provider } from 'react-redux'
+import { store } from './store'
 
 
 ReactDOM.render(
   <React.StrictMode>
-		<BrowserRouter>
-			{/* <Router /> */}
-			<App/>
-		</BrowserRouter>
+		<Provider store={store}>
+			<BrowserRouter>
+				{/* <Router /> */}
+				<App/>
+			</BrowserRouter>			
+		</Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

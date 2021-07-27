@@ -3,10 +3,12 @@ import MessageList from '../MessageList/MessageList'
 import { useState } from 'react'
 import MessageInput from '../MessageInput/MessageInput'
 import { USER } from '../Constants'
-import { Redirect, useParams } from 'react-router'
+import { Redirect } from 'react-router'
+import { ChatContext } from '../App/App'
+import { useContext } from 'react'
 
 function Chat(props) {
-	
+	const { contextProps } = useContext(ChatContext)
 	const [messageList, setMessageList] = useState([])
 
 	const {
@@ -14,8 +16,8 @@ function Chat(props) {
 		checkChatExists
 	} = props
 
-	const { chatId } = useParams()
-
+	// const { chatId } = useParams()
+	console.log(contextProps);
 	const addMessage = (message, name) => {
 		setMessageList(messageList => [...messageList, { text: message, author: name, date: new Date().toLocaleTimeString() }])
 	}
@@ -31,8 +33,8 @@ function Chat(props) {
 	})
 
 	const isChatExists = React.useMemo(
-		() => checkChatExists(chatId),
-		[checkChatExists, chatId]
+		() => checkChatExists(contextProps),
+		[checkChatExists, contextProps]
 	)
 
 	if (!isChatExists) {

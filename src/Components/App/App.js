@@ -1,8 +1,10 @@
 import './App.sass'
-import {useState, useCallback } from 'react'
+import React, {useState, useCallback } from 'react'
 import Router from '../Router/Router'
 import { Link } from 'react-router-dom'
 import { PATHS } from '../Constants'
+
+export const ChatContext = React.createContext({ chatId: undefined })
 
 
 function App() {
@@ -41,14 +43,14 @@ function App() {
 					<Link to={PATHS.profileLink}>Профиль</Link>
 				</div>
 			</header>
-			<Router
-				chats={chats}
-				currentChat={currentChat}
-				currentChatChat={currentChatChat}
-				onCurrentChatChatChange={onCurrentChatChatChange}
-				onCurrentChatChange={onCurrentChatChange}
-				checkChatExists={checkChatExists}
-			/>
+			<ChatContext.Provider value={currentChat.id}>
+				<Router
+					chats={chats}
+					currentChat={currentChat}
+					onCurrentChatChange={onCurrentChatChange}
+					checkChatExists={checkChatExists}
+				/>
+			</ChatContext.Provider>
 		</div>
 	);
 }

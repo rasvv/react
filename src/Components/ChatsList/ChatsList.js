@@ -5,7 +5,9 @@ import { PATHS } from '../Constants'
 import Chat from '../Chat/Chat'
 
 
+
 function ChatsList(props) {
+
 	const {
 		chats = [],
 		currentChat,
