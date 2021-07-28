@@ -2,7 +2,7 @@ import { combineReducers, createStore } from 'redux'
 import profileReducer from './reducers/profile'
 
 const rootReducer = combineReducers({
-    profile: profileReducer
+    profile: profileReducer,
 })
 
 export const store = createStore(
