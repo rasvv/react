@@ -3,9 +3,9 @@ import {
 	CHANGE_SHOW_NAME, 
 	CHANGE_SHOW_AGE, 
 	CHANGE_SHOW_NAME_INPUT 
-} from '../actions/profile'
+} from './actions'
 
-const initialState = {
+const profileState = {
 	name: 'Валерий',
 	age: 46, 
 	showName: true,
@@ -14,7 +14,7 @@ const initialState = {
 	
 }
 
-export default function reducer(state = initialState, action) {
+export default function reducer(state = profileState, action) {
 	switch (action.type) {
 		case CHANGE_NAME: {
 			return {

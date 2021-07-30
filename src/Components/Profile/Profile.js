@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormControlLabel, Checkbox, Input } from '@material-ui/core'
 import {useSelector, useDispatch} from 'react-redux'
-import { toggleShowName, toggleShowAge, toggleShowNameInput, changeName } from '../../actions/profile'
+import { toggleShowName, toggleShowAge, toggleShowNameInput, changeName } from '../../store/profile/actions'
 
 
 
