@@ -4,11 +4,12 @@ import { List, ListItem } from '@material-ui/core'
 // import { PATHS } from '../Constants'
 import Chat from '../Chat/Chat'
 import {useSelector, useDispatch} from 'react-redux'
-
+import { changeCurrentChat } from '../../store/chats/actions'
 
 function ChatsList() {
-	const { chatsList } = useSelector((state) => state.chats)
-	const { currentChat } = useSelector((state) => state.chats)
+	const { chatsList, currentChat } = useSelector((state) => state.chats)
+	// const { currentChat } = useSelector((state) => state.chats)
+	const dispatch = useDispatch()
 	// const currentChat = useSelector((state) => state.chats.currentChat)
 
 	// const {
@@ -23,14 +24,22 @@ function ChatsList() {
 	// 	history.push(`${PATHS.chatsLink}/${chat.id}`)
 	// }
 
+	const onChatListClick = (chat) => {
+		// console.log(chat)
+		dispatch(
+			changeCurrentChat(chat)
+		)
+	}
+
   return (
     <div className="chatslist" >
 			<List  className="app__sidebar">
 				{chatsList.map((chat) => (
 					<ListItem 
+						button
 						key={chat.id}
 						selected={chat.id === currentChat.id}
-						// onClick={() => onChatListClick(chat)}
+						onClick={() => onChatListClick(chat)}
 					>
 						{chat.author}
 					</ListItem>

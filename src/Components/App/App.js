@@ -9,7 +9,7 @@ export const ChatContext = React.createContext({ chatId: undefined })
 
 
 function App() {
-	const {chats, currentChat} = useSelector((state) => state.chats.chatsList)
+	const {currentChat} = useSelector((state) => state.chats)
 
 	// const [chats] = useState([
 	// 	{id: 'chat1',	author: 'Martin', chat:[]},
@@ -46,14 +46,14 @@ function App() {
 					<Link to={PATHS.profileLink}>Профиль</Link>
 				</div>
 			</header>
-			<ChatContext.Provider value={currentChat}>
+			{/* <ChatContext.Provider value={currentChat}> */}
 				<Router
 					// chats={chats}
 					// currentChat={currentChat}
 					// onCurrentChatChange={onCurrentChatChange}
 					// checkChatExists={checkChatExists}
 				/>
-			</ChatContext.Provider>
+			{/* </ChatContext.Provider> */}
 		</div>
 	);
 }

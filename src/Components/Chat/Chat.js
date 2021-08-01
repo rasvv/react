@@ -1,45 +1,41 @@
 import React from 'react'
 import MessageList from '../MessageList/MessageList'
-import { useState } from 'react'
+// import { useState } from 'react'
 import MessageInput from '../MessageInput/MessageInput'
 import { USER } from '../Constants'
-import { Redirect } from 'react-router'
-import { ChatContext } from '../App/App'
-import { useContext } from 'react'
+import { useParams } from 'react-router'
+// import { ChatContext } from '../App/App'
+// import { useContext } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { addMessage } from '../../store/messages/actions'
 
 
 function Chat(props) {
-	const {chatsList, currentChat} = useSelector((state) => state.chats)
-	const messages = useSelector((state) => state.messages.MessageList)
+	const { chatId } = useParams()
+	const {currentChat} = useSelector((state) => state.chats)
+	const messages = useSelector((state) => state.messages[chatId] || [])
+	// const currentChat = useSelector((state) => state.messages.currentChat)
 	
 	const dispatch = useDispatch()
 
-	const onAddMessage = (message) => {
-		dispatch(addMessage(currentChat.id, message))
+	const onAddMessage = (message, author) => {
+		dispatch(
+			addMessage(chatId, {
+				id: `${Date.now()}`,
+				author: author,
+				text: message				
+			})
+		)
 	}
 
-	// const { contextProps } = useContext(ChatContext)
-	// const [messageList, setMessageList] = useState([])
-
-	// const {
-	// 	currentChat,
-	// 	checkChatExists
-	// } = props
-
-	// const { chatId } = useParams()
-	// console.log(contextProps);
-	// const addMessage = (message, name) => {
-	// 	setMessageList(messageList => [...messageList, { text: message, author: name, date: new Date().toLocaleTimeString() }])
-	// }
 	
 	React.useEffect(() => {
-		if (messages) {
-			let mes = messages[messages.length - 1]
-			if (mes['author'] !== `${currentChat.author}`)
+		let mes = messages[messages.length - 1]		
+		if (mes) {
+			console.log(mes.author, currentChat.author);
+			if (mes.author !== currentChat.author)
 				setTimeout(() => {
-					onAddMessage(mes['text'].split('').reverse().join(''), `${currentChat.author}`)
+					onAddMessage(mes['text'].split('').reverse().join(''), currentChat.author)
 				}, 1500)
 		}
 	})
@@ -58,10 +54,10 @@ function Chat(props) {
 			<p>{currentChat.author}</p>
 			<div className='messagebox'>
 				{messages?.length ? (
-					messages.map((message, index) => (
+					messages.map((message) => (
 						<MessageList 
 							className={message.author !== `${USER.me}` ? "mes left" : "mes"}
-							key={ index }
+							key={ message.id }
 							text={message.text}
 							author={message.author}
 							date={message.date}
