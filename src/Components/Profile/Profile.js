@@ -2,11 +2,12 @@ import React from 'react'
 import { FormControlLabel, Checkbox, Input } from '@material-ui/core'
 import {useSelector, useDispatch} from 'react-redux'
 import { toggleShowName, toggleShowAge, toggleShowNameInput, changeName } from '../../store/profile/actions'
+import { getProfileData } from '../../store/profile/selectors'
 
 
 
 export default function Profile() {
-	const { showName, showNameInput, showAge, name, age } = useSelector((state) => state.profile)
+	const { showName, showNameInput, showAge, name, age } = useSelector(getProfileData)
 	const dispatch = useDispatch()
 
 	const setSName = (event) => {

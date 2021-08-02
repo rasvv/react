@@ -13,7 +13,7 @@ const chats = ([
 
 const chatsState = {
 	chatsList: chats,
-	currentChat: chats[0],
+	// currentChat: chats[0],
 }
 
 export default function chatsReducer(state = chatsState, action) {
@@ -29,15 +29,6 @@ export default function chatsReducer(state = chatsState, action) {
 			return {
 				...state,
 				// chatsList: state.chatsList.filter((chat) => chat.id === action.id)
-			}
-		}
-		case CHANGE_CURRENT_CHAT: {
-			console.log(action.payload.currentChat);
-			// console.log('2'+action.payload);
-
-			return {
-				[action.payload.currentChat]: action.payload
-				// currentChat: action.payload.currentChat,
 			}
 		}
 		default:

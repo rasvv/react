@@ -17,18 +17,18 @@ export default function Router(props) {
 				</Route>
 				<Route exact path={PATHS.chatsLink}>
 					<Chats 
-						chats={props.chats}
-						currentChat={props.currentChat}
-						onCurrentChatChange={props.onCurrentChatChange}
-						checkChatExists={props.checkChatExists}
+						// chats={props.chats}
+						// currentChat={props.currentChat}
+						// onCurrentChatChange={props.onCurrentChatChange}
+						// checkChatExists={props.checkChatExists}
 					/>
 				</Route>
 				<Route path={`${PATHS.chatsLink}/:chatId`}>
 					<Chats 
-						chats={props.chats}
-						currentChat={props.currentChat}
-						onCurrentChatChange={props.onCurrentChatChange}
-						checkChatExists={props.checkChatExists}
+						// chats={props.chats}
+						// currentChat={props.currentChat}
+						// onCurrentChatChange={props.onCurrentChatChange}
+						// checkChatExists={props.checkChatExists}
 					/>
 				</Route>
 				<Route path={PATHS.profileLink}>

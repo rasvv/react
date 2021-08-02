@@ -3,42 +3,30 @@ import "./ChatsList.sass"
 import { List, ListItem } from '@material-ui/core'
 // import { PATHS } from '../Constants'
 import Chat from '../Chat/Chat'
-import {useSelector, useDispatch} from 'react-redux'
-import { changeCurrentChat } from '../../store/chats/actions'
+import {useSelector} from 'react-redux'
+// import { changeCurrentChat } from '../../store/chats/actions'
+import { getChatsData } from '../../store/chats/selectors'
+import { useHistory } from "react-router"
 
 function ChatsList() {
-	const { chatsList, currentChat } = useSelector((state) => state.chats)
+	const { chatsList } = useSelector(getChatsData)
 	// const { currentChat } = useSelector((state) => state.chats)
-	const dispatch = useDispatch()
-	// const currentChat = useSelector((state) => state.chats.currentChat)
-
-	// const {
-	// 	chats = [],
-	// 	currentChat,
-	// 	onCurrentChatChange
-	// } = props
-	// const history = useHistory()
-
-	// const onChatListClick = (chat) => {
-	// 	onCurrentChatChange(chat)
-	// 	history.push(`${PATHS.chatsLink}/${chat.id}`)
-	// }
+	// const dispatch = useDispatch()
+	const history = useHistory()
 
 	const onChatListClick = (chat) => {
-		// console.log(chat)
-		dispatch(
-			changeCurrentChat(chat)
-		)
+		history.push(`/chats/${chat.id}`)
 	}
 
   return (
     <div className="chatslist" >
 			<List  className="app__sidebar">
-				{chatsList.map((chat) => (
+				{Object.values(chatsList).map((chat) => (
 					<ListItem 
 						button
 						key={chat.id}
-						selected={chat.id === currentChat.id}
+						component='a'
+						// selected={chat.id === currentChat.id}
 						onClick={() => onChatListClick(chat)}
 					>
 						{chat.author}
@@ -46,13 +34,7 @@ function ChatsList() {
 				))}				
 			</List>
 			<div className='app__main'>
-				<Chat 
-					// chats={props.chats}
-					// currentChatChat={props.currentChatChat}
-					// currentChat={props.currentChat}
-					// onCurrentChatChange={props.onCurrentChatChange}
-					// checkChatExists={props.checkChatExists}
-				/>
+				<Chat />
 			</div>
     </div>
   )
