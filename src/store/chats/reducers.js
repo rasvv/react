@@ -28,7 +28,7 @@ export default function chatsReducer(state = chatsState, action) {
 			delete state[action.payload.chatId]
 			return {
 				...state,
-				// chatsList: state.chatsList.filter((chat) => chat.id === action.id)
+				// chatsList: state.chatsList.filter((chat) => chat.id === action.payload.chatId)
 			}
 		}
 		default:

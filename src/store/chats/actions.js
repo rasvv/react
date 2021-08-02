@@ -16,16 +16,9 @@ export const addChat = (chatId, name) => ({
 	}
 })
 
-export const removeChat = (chatId) => ({
+export const deleteChat = (chatId) => ({
 	type: DELETE_CHAT,
 	payload: {
 		chatId,
-	},
-})
-
-export const changeCurrentChat = (currentChat) => ({
-	type: CHANGE_CURRENT_CHAT,
-	payload: {
-		currentChat,
 	},
 })

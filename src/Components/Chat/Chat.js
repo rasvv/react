@@ -7,12 +7,19 @@ import {useSelector, useDispatch} from 'react-redux'
 import { addMessage } from '../../store/messages/actions'
 import { getChatsData } from '../../store/chats/selectors'
 import { getMessagesData } from '../../store/messages/selectors'
+// import { store } from '../../store/store'
 
 
 function Chat(props) {
 	const { chatId } = useParams()
 	const { chatsList } = useSelector(getChatsData)
-	const messages = useSelector(getMessagesData[chatId] || [])
+	// const { chatsList } = useSelector((state) => state.chats)
+	// const messages = useSelector(getMessagesData[chatId] || [])
+	// const messages = useSelector((state) => state.messages[chatId] || [])
+	
+	const mmm = useSelector(getMessagesData)
+	const messages = mmm[chatId] ? mmm[chatId] : []
+
 	const currentChat = Object.values(chatsList).find((chat) => chat.id === chatId)
 	
 	const dispatch = useDispatch()
