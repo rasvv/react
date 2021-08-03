@@ -50,10 +50,10 @@ function Chat() {
 					messages.map((message) => (
 						<MessageList 
 							className={message.author !== `${USER.me}` ? "mes left" : "mes"}
-							key={ message.id }
-							text={ message.text }
-							author={ message.author }
-							date={ message.date }
+							// key={ message.id }
+							// text={ message.text }
+							// author={ message.author }
+							// date={ message.date }
 						/>
 					))
 				) : null }

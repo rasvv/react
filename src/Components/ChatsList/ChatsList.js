@@ -54,27 +54,29 @@ function ChatsList() {
     <div className="chatslist container" >
 			<List  className="app__sidebar">
 			<h4>Мои собеседники</h4>
-				{Object.values(chatsList).map((chat) => (
-					<div className="flexed" key={chat.id}>
-						<ListItem 
-							className="chatslistlink" 
-							button
-							component='a'
-							onClick={() => onChatListClick(chat)}
-						>
-							{chat.author}
-						</ListItem>
+				<div className="chatslist__list">
+					{Object.values(chatsList).map((chat) => (
+						<div className="flexed" key={chat.id}>
+							<ListItem 
+								className="chatslistlink" 
+								button
+								component='a'
+								onClick={() => onChatListClick(chat)}
+							>
+								{chat.author}
+							</ListItem>
 
-						<IconButton
-							color='inherit'
-							variant="contained"
-							onClick={() => onDeleteChatClick(chat.id)}
-						>
-								<DeleteIcon />
-						</IconButton>						
-					</div>
+							<IconButton
+								color='inherit'
+								variant="contained"
+								onClick={() => onDeleteChatClick(chat.id)}
+							>
+									<DeleteIcon />
+							</IconButton>						
+						</div>
 
-				))}			
+					))}			
+				</div>
 				<Input
 					className="chatslistinput" 
 					color='secondary'

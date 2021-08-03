@@ -3,6 +3,23 @@
 	background-color: #464a53
 	height: 100vh
 
+
+	&__sidebar
+		width: 40%
+		text-align: left
+		max-height: 70vh
+		margin-left: 10px
+
+	&__main
+		width: 60%
+		max-width: 400px
+		text-align: center
+		display: flex
+		flex-direction: column
+		align-items: center
+		justify-content: center
+		margin-right: 10px
+
 .header
 	background-color: #282c34
 	height: 100px
@@ -38,9 +55,8 @@ b
 
 .messagebox
 	border: 2px solid blue
-	width: 400px
-	height: 50vh
-	overflow-y: scroll
+	height: 70vh
+	overflow-y: auto
 	margin: 0 auto
 	box-sizing: border-box
 	text-align: right
@@ -50,6 +66,10 @@ b
 	align-items: flex-end
 	background-color: #fff
 	// scroll-snap-type: x mandatory
+
+.chat
+	// min-width: 400px
+	width: 100%
 
 .mes
 	border: 1px solid #3dc1f5
@@ -68,7 +88,7 @@ b
 	align-self: baseline
 
 .meeting-body
-	width: 600px
+	max-width: 600px
 	margin: 20px auto
 	display: flex
 	align-items: center
