@@ -1,23 +1,16 @@
 import "./ChatsList.sass"
 import { useState } from 'react'
-// import {useHistory} from 'react-router'
 import { List, ListItem, IconButton, Input } from '@material-ui/core'
-// import DeleteIcon from '@material-ui/icons/Delete'
 import DeleteIcon from '@material-ui/icons/Delete'
-import DoneOutlineIcon from '@material-ui/icons/DoneOutline'
-// import { PATHS } from '../Constants'
 import Chat from '../Chat/Chat'
 import {useSelector, useDispatch} from 'react-redux'
-// import { changeCurrentChat } from '../../store/chats/actions'
 import { getChatsData } from '../../store/chats/selectors'
 import { useHistory } from "react-router"
 import { deleteChat, addChat } from '../../store/chats/actions'
-import MessageInput from '../MessageInput/MessageInput'
 
 function ChatsList() {
 	const { chatsList, chatsCount } = useSelector(getChatsData)
 	const [name, setName] = useState('')
-	// const { currentChat } = useSelector((state) => state.chats)
 	const dispatch = useDispatch()
 	const history = useHistory()
 
@@ -33,7 +26,6 @@ function ChatsList() {
 	}
 
 	const onchange = (e) => {
-		console.log(e.target.value)
 		setName(e.target.value)
 	}
 
@@ -44,12 +36,10 @@ function ChatsList() {
 	}
 
 	const onAddChatClick = (name) => {
-		console.log(name)
 		handlerOnClick(name)
 	}
 
 	const handlerOnClick = (name) => {
-		// console.log(chatsList.lenght)
 		dispatch(
 			addChat(
 				`chat${chatsCount+1}`, 
@@ -64,12 +54,11 @@ function ChatsList() {
     <div className="chatslist" >
 			<List  className="app__sidebar">
 				{Object.values(chatsList).map((chat) => (
-					<div key={chat.id}>
+					<div className="flexed" key={chat.id}>
 						<ListItem 
+							className="chatslistlink" 
 							button
-							
 							component='a'
-							// selected={chat.id === currentChat.id}
 							onClick={() => onChatListClick(chat)}
 						>
 							{chat.author}
@@ -85,19 +74,17 @@ function ChatsList() {
 					</div>
 
 				))}			
-				{/* <MessageInput
-					updateData={onAddChatClick} 
-					placeholder="Новый собеседник"
-				/> */}
+				<Input
+					className="chatslistinput" 
+					color='secondary'
+		      placeholder="Введите имя нового собеседника"
+					onChange={onchange}
+					onKeyDown={onkeydown}
+					value={name}
+		      onSubmit={onAddChatClick}
+	      />
 			</List>
-	    <Input
-	      label="Имя чата"
-	      placeholder="Введите имя чата"
-				onChange={onchange}
-				onKeyDown={onkeydown}
-				value={name}
-	      onSubmit={onAddChatClick}
-      />
+
 
 			<div className='app__main'>
 				<Chat />

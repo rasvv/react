@@ -9,7 +9,7 @@ import { getChatsData } from '../../store/chats/selectors'
 import { getMessagesData } from '../../store/messages/selectors'
 
 
-function Chat(props) {
+function Chat() {
 	const { chatId } = useParams()
 	const { chatsList } = useSelector(getChatsData)
 	
