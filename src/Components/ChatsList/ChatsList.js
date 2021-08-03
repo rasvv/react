@@ -51,8 +51,9 @@ function ChatsList() {
 	}
 
   return (
-    <div className="chatslist" >
+    <div className="chatslist container" >
 			<List  className="app__sidebar">
+			<h4>Мои собеседники</h4>
 				{Object.values(chatsList).map((chat) => (
 					<div className="flexed" key={chat.id}>
 						<ListItem 

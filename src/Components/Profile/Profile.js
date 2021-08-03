@@ -1,4 +1,5 @@
 import React from 'react'
+import './profile.sass'
 import { FormControlLabel, Checkbox, Input } from '@material-ui/core'
 import {useSelector, useDispatch} from 'react-redux'
 import { toggleShowName, toggleShowAge, toggleShowNameInput, changeName } from '../../store/profile/actions'
@@ -30,8 +31,10 @@ export default function Profile() {
 		<div>
 			<h3> Страница профиля</h3>
 			<FormControlLabel
+				className='lined'
 				control= {
 					<Checkbox
+					  label="Inherit"
 						checked={showName}
 						onChange={setShowName}
 						name='ChB'
@@ -41,9 +44,9 @@ export default function Profile() {
 				label='Показать имя'
 			/>
 			{showName && 
-				<div>
-					<b>{ name }</b>
-					<br/>
+				<div className='lined'>
+					<b className='font'>{ name }</b>
+					{/* <br/> */}
 						<Checkbox
 							checked={showNameInput}
 							onChange={setShowNameInput}
@@ -53,9 +56,10 @@ export default function Profile() {
 					Изменить имя
 				</div>
 			}
-			{showNameInput && 
-				<div>
+			{showName && showNameInput && 
+				<div className='lined'>
 					<Input
+						autoFocus
 						type='text'
 						value={name}
 						onChange={setSName}
@@ -74,7 +78,7 @@ export default function Profile() {
 				}
 				label='Показать возраст'
 			/>
-			{showAge && <div><b>{ age }</b></div>}
+			{showAge && <div className='lined'><b>{ age }</b></div>}
 		</div>
 	)
 }

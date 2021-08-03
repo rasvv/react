@@ -51,9 +51,9 @@ function Chat() {
 						<MessageList 
 							className={message.author !== `${USER.me}` ? "mes left" : "mes"}
 							key={ message.id }
-							text={message.text}
-							author={message.author}
-							date={message.date}
+							text={ message.text }
+							author={ message.author }
+							date={ message.date }
 						/>
 					))
 				) : null }
