@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router'
 import Home from '../Home/Home'
-// import Chat from '../Chat/Chat'
+
 import Profile from '../Profile/Profile'
 import Chats from '../ChatsList/ChatsList'
 import { PATHS } from '../Constants'
@@ -16,20 +16,10 @@ export default function Router(props) {
 					<Home />
 				</Route>
 				<Route exact path={PATHS.chatsLink}>
-					<Chats 
-						// chats={props.chats}
-						// currentChat={props.currentChat}
-						// onCurrentChatChange={props.onCurrentChatChange}
-						// checkChatExists={props.checkChatExists}
-					/>
+					<Chats />
 				</Route>
 				<Route path={`${PATHS.chatsLink}/:chatId`}>
-					<Chats 
-						// chats={props.chats}
-						// currentChat={props.currentChat}
-						// onCurrentChatChange={props.onCurrentChatChange}
-						// checkChatExists={props.checkChatExists}
-					/>
+					<Chats />
 				</Route>
 				<Route path={PATHS.profileLink}>
 					<Profile />

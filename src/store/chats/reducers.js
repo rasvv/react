@@ -1,8 +1,6 @@
 import { 
-	// CHANGE_CHAT, 	
 	ADD_CHAT, 	
 	DELETE_CHAT, 
-	CHANGE_CURRENT_CHAT,
 } from './actions'
 
 const chats = ([
@@ -13,7 +11,7 @@ const chats = ([
 
 const chatsState = {
 	chatsList: chats,
-	// currentChat: chats[0],
+	chatsCount: 3,
 }
 
 export default function chatsReducer(state = chatsState, action) {
@@ -21,14 +19,20 @@ export default function chatsReducer(state = chatsState, action) {
 		case ADD_CHAT: {
 			return {
 				...state,
-				[action.payload.id]: action.payload,
+				chatsList: [
+					...state.chatsList,
+					{
+						id: action.payload.id,
+						author: action.payload.name,
+					}
+				], 
+				chatsCount:action.payload.count
 			}
 		}
 		case DELETE_CHAT: {
-			delete state[action.payload.chatId]
 			return {
 				...state,
-				// chatsList: state.chatsList.filter((chat) => chat.id === action.payload.chatId)
+				chatsList: state.chatsList.filter((chat) => chat.id !== action.payload.chatId)
 			}
 		}
 		default:

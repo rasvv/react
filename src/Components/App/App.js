@@ -9,33 +9,6 @@ export const ChatContext = React.createContext({ chatId: undefined })
 
 
 function App() {
-	const {currentChat} = useSelector((state) => state.chats)
-
-	// const [chats] = useState([
-	// 	{id: 'chat1',	author: 'Martin', chat:[]},
-	// 	{id: 'chat2',	author: 'Jessica', chat:[]},
-	// 	{id: 'chat3',	author: 'Michael', chat:[]},
-	// ])
-
-	// const [currentChat, setCurrentChat] = useState(chats[0])
-	// const [currentChatChat, setCurrentChatChat] = useState(currentChat.chat)
-
-	// const onCurrentChatChange = (chat) => {
-	// 	setCurrentChat(chat)
-	// 	setCurrentChatChat(currentChat.chat)
-	// }
-
-	// const onCurrentChatChatChange = (chat) => {
-	// 	setCurrentChatChat(chat)
-	// }
-
-	// const checkChatExists = useCallback(
-	// 	(chatId) => {
-	// 		return Boolean(chats.find((chat) => chat.id === chatId))
-	// 	},
-	// 	[chats]
-	// )	
-
 	return (
 		<div className="app">
 			<header className="app-header header">
@@ -46,14 +19,7 @@ function App() {
 					<Link to={PATHS.profileLink}>Профиль</Link>
 				</div>
 			</header>
-			{/* <ChatContext.Provider value={currentChat}> */}
-				<Router
-					// chats={chats}
-					// currentChat={currentChat}
-					// onCurrentChatChange={onCurrentChatChange}
-					// checkChatExists={checkChatExists}
-				/>
-			{/* </ChatContext.Provider> */}
+				<Router	/>
 		</div>
 	);
 }

@@ -7,15 +7,11 @@ import {useSelector, useDispatch} from 'react-redux'
 import { addMessage } from '../../store/messages/actions'
 import { getChatsData } from '../../store/chats/selectors'
 import { getMessagesData } from '../../store/messages/selectors'
-// import { store } from '../../store/store'
 
 
 function Chat(props) {
 	const { chatId } = useParams()
 	const { chatsList } = useSelector(getChatsData)
-	// const { chatsList } = useSelector((state) => state.chats)
-	// const messages = useSelector(getMessagesData[chatId] || [])
-	// const messages = useSelector((state) => state.messages[chatId] || [])
 	
 	const mmm = useSelector(getMessagesData)
 	const messages = mmm[chatId] ? mmm[chatId] : []
@@ -34,7 +30,6 @@ function Chat(props) {
 			})
 		)
 	}
-
 	
 	React.useEffect(() => {
 		let mes = messages[messages.length - 1]		
@@ -46,10 +41,7 @@ function Chat(props) {
 		}
 	})
 
-	// if (!isChatExists) {
-	// 	return <Redirect to="/chats" />
-	// }
-
+	if (currentChat) {
 	return (
 		<div className='chat'>
 			<p>{currentChat.author}</p>
@@ -71,7 +63,11 @@ function Chat(props) {
 				placeholder="Введите сообщение"
 			/>
 		</div>
-	)
+	)} else {
+		return (
+			<div> </div>
+			)
+	}
 }
 
 export default Chat
