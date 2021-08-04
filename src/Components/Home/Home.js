@@ -10,7 +10,7 @@ function Home() {
 		<main>
 			<Grid container >
 				<Grid item xs={12}>
-					< Message user={USER.me}/>
+					< Message/>
 				</Grid>
 				<Grid item xs={12}>
 					<Link	className="speaklink" to="/chats">

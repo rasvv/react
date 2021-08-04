@@ -1,7 +1,6 @@
 import React from 'react'
 import MessageList from '../MessageList/MessageList'
 import MessageInput from '../MessageInput/MessageInput'
-import { USER } from '../Constants'
 import { useParams } from 'react-router'
 import {useSelector, useDispatch} from 'react-redux'
 import { addMessage } from '../../store/messages/actions'
@@ -49,7 +48,7 @@ function Chat() {
 				{messages?.length ? (
 					messages.map((message) => (
 						<MessageList 
-							className={message.author !== `${USER.me}` ? "mes left" : "mes"}
+							className={message.author !== `${currentChat.author}` ? "mes left" : "mes"}
 							// key={ message.id }
 							// text={ message.text }
 							// author={ message.author }

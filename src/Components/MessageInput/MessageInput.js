@@ -1,9 +1,11 @@
 import "./MessageInput.sass"
 import { useState } from 'react'
+import {useSelector} from 'react-redux'
 import {Button, TextField, Grid} from '@material-ui/core'
-import { USER } from '../Constants'
+import { getProfileData } from '../../store/profile/selectors'
 
 function MessageInput(props) {
+	const { name } = useSelector(getProfileData)
 	const [value, setValue] = useState('');
 
 	const onchange = (e) => {
@@ -17,7 +19,7 @@ function MessageInput(props) {
 	}
 
 	const handlerOnClick = () => {
-		props.updateData(value, `${USER.me}`)
+		props.updateData(value, name)
 		setValue('')	
 	}
 

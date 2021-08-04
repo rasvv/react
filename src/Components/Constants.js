@@ -4,6 +4,6 @@ export const PATHS = {
 	profileLink: "/profile"
 }
 
-export const USER = {
-	me: 'Валерий'
-}
+// export const USER = {
+// 	me: 'Валерий'
+// }
