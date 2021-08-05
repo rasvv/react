@@ -1,9 +1,7 @@
-// import { func } from 'prop-types'
 import { Grid } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import React from 'react'
 import Message from '../Message/Message'
-import { USER } from '../Constants'
 
 function Home() {
 	return (

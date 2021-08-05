@@ -3,7 +3,7 @@ import MessageList from '../MessageList/MessageList'
 import MessageInput from '../MessageInput/MessageInput'
 import { useParams } from 'react-router'
 import {useSelector, useDispatch} from 'react-redux'
-import { addMessage } from '../../store/messages/actions'
+import { addMessageThunk } from '../../store/messages/actions'
 import { getChatsData } from '../../store/chats/selectors'
 import { getMessagesData } from '../../store/messages/selectors'
 
@@ -16,30 +16,20 @@ function Chat() {
 	const messages = mmm[chatId] ? mmm[chatId] : []
 
 	const currentChat = Object.values(chatsList).find((chat) => chat.id === chatId)
-	
+		
 	const dispatch = useDispatch()
 
 	const onAddMessage = (message, author) => {
 		dispatch(
-			addMessage(chatId, {
+			addMessageThunk(chatId, {
 				id: `${Date.now()}`,
 				author: author,
 				text: message, 
 				date: new Date().toLocaleTimeString(),				
-			})
+			}, currentChat.author)
 		)
 	}
 	
-	React.useEffect(() => {
-		let mes = messages[messages.length - 1]		
-		if (mes) {
-			if (mes.author !== currentChat.author)
-				setTimeout(() => {
-					onAddMessage(mes['text'].split('').reverse().join(''), currentChat.author)
-				}, 1500)
-		}
-	})
-
 	if (currentChat) {
 	return (
 		<div className='chat'>
@@ -48,11 +38,11 @@ function Chat() {
 				{messages?.length ? (
 					messages.map((message) => (
 						<MessageList 
-							className={message.author !== `${currentChat.author}` ? "mes left" : "mes"}
-							// key={ message.id }
-							// text={ message.text }
-							// author={ message.author }
-							// date={ message.date }
+							className={message.author === `${currentChat.author}` ? "mes left" : "mes"}
+							key={ message.id }
+							text={ message.text }
+							author={ message.author }
+							date={ message.date }
 						/>
 					))
 				) : null }

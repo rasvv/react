@@ -8,27 +8,20 @@ export const addMessage = ( chatId, message ) => ({
 	},
 })
 
-export const addMessageThunk = ( chatId, message ) => {
+export const addMessageThunk = ( chatId, message, name ) => {
 	return (dispatch, getState) => {
-			console.log(getState())
-			dispatch(addMessage( chatId, message ))
+		dispatch(addMessage( chatId, message ))
 
-			let mes = messages[messages.length - 1]		
-			if (mes) {
-				if (mes.author !== currentChat.author)
-					setTimeout(() => {
-						addMessage(chatId, {
-							id: `${Date.now()}`,
-							author: message.author,
-							text: message['text'].split('').reverse().join(''), 
-							date: new Date().toLocaleTimeString(),				
-						})
-						// onAddMessage(mes['text'].split('').reverse().join(''), currentChat.author)
-					}, 1500)
-			}
-
-			// setTimeout(() => {
-			// 		dispatch(changeIsOnline(isOnline))
-			// }, 1000)
+		console.log(message.author, name);
+		if (message.author !== name)
+		setTimeout(() => dispatch(
+				addMessage(chatId, {
+					id: `${Date.now()}`,
+					author: name,
+					text: message['text'].split('').reverse().join(''),
+					date: new Date().toLocaleTimeString(),
+				})
+			), 1500
+		)
 	}
 }
