@@ -1,5 +1,5 @@
 // import transport from '../../services/transport'
-import '../App/App.sass'
+import './news.sass'
 import { Button, Card, CardMedia, CardActionArea, CardContent, Typography } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchNews } from '../../store/news/actions'
@@ -11,6 +11,7 @@ import { fetchNews } from '../../store/news/actions'
 
 export default function News() {
 const { list } = useSelector((state) => state.news)
+const newsList = list['response']
 
 const dispatch = useDispatch()
 
@@ -18,34 +19,37 @@ const dispatch = useDispatch()
 
 	return(
 		<div>
-			<p>News</p>
+			<p>Новости футбола</p>
 			<Button onClick={loadData}>Загрузить новости</Button>
 
-    {/* <div style={{ height: 400, width: '100%' }}>
-      <DataGrid rowHeight={25} {...list} />
-    </div> */}
-
-
-
 			<div className="bordered">
-				{list.map((newsItem) => (
-					<Card style={{displey: 'flex'}}>
+			{newsList?.length ? (
+				newsList.map((newsItem) => (
+					<Card 
+						style={{displey: 'flex'}}
+						// button
+						// component='a'
+						link={newsItem.matchviewUrl}
+					>
 						<CardActionArea className='flexed'>
 							<CardMedia
 								style={{height: '250px', width: '350px'}}
 								component="img"
 								alt="Contemplative Reptile"
 								object-fit="contein"
-								image={ newsItem.imageUrl }
+								image={ newsItem.thumbnail }
 								title="Contemplative Reptile"
 							/>
 							<CardContent>
+								<Typography variant="body2" color="textSecondary" component="p">
+									{  newsItem.competition }	
+								</Typography>
 								<Typography gutterBottom variant="h5" component="h5">
 									{  newsItem.title }
 								</Typography>
-								<Typography variant="body2" color="textSecondary" component="p">
-									{  newsItem.summary }	
-								</Typography>
+								{/* <Typography variant="body2" color="textSecondary" component="p">
+									{  newsItem.matchviewUrl }	
+								</Typography> */}
 							</CardContent>
 						</CardActionArea>
 						{/* <CardActions>
@@ -60,7 +64,8 @@ const dispatch = useDispatch()
 					// <li key={newsItem.id}>
 					// 	<p>{newsItem.title}</p>
 					// </li>
-				))}
+				))
+			):null}
 			</div>
 		</div>
 

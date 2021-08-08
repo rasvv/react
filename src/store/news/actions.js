@@ -2,6 +2,9 @@ import { API_URL } from '../../Components/Constants'
 import transport from '../../services/transport'
 
 export const SET_NEWS_LIST = 'NEWS::SET_NEWS_LIST'
+export const SET_ERROR_STATUS = 'NEWS::SET_ERROR_STATUS'
+export const SET_LOADING_STATUS = 'NEWS::SET_LOADING_STATUS'
+export const SET_IDLE_STATUS = 'NEWS::SET_IDLE_STATUS'
 
 export const setNewsList = (newsList) => ({
 	type: SET_NEWS_LIST,
@@ -10,12 +13,28 @@ export const setNewsList = (newsList) => ({
 	}
 })
 
+export const setLoadingStatus = () => ({
+	type: SET_LOADING_STATUS,
+})
+
+export const setIdleStatus = () => ({
+	type: SET_IDLE_STATUS,
+})
+
+export const setErrorStatus = () => ({
+	type: SET_ERROR_STATUS,
+})
+
+
 export const fetchNews = () => {
 	return async (dispatch, getState) => {
+		dispatch(setLoadingStatus())
 		try {
 			const { data } = await transport.get(API_URL)
+			dispatch(setIdleStatus())
 			dispatch(setNewsList(data))
 		} catch (error) {
+			dispatch(setErrorStatus())
 			console.error('error', error)
 		}
 	}
