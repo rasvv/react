@@ -13,6 +13,7 @@ function App() {
 					<Link to={PATHS.homeLink}>Главная</Link>
 					<Link to={PATHS.chatsLink}>Чаты</Link>
 					<Link to={PATHS.profileLink}>Профиль</Link>
+					<Link to={PATHS.newsLink}>Новости</Link>
 				</div>
 			</header>
 				<Router	/>
