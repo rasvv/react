@@ -27,7 +27,7 @@ export const setErrorStatus = () => ({
 
 
 export const fetchNews = () => {
-	return async (dispatch, getState) => {
+	return async (dispatch) => {
 		dispatch(setLoadingStatus())
 		try {
 			const { data } = await transport.get(API_URL)

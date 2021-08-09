@@ -20,25 +20,26 @@ const dispatch = useDispatch()
 	return(
 		<div>
 			<p>Новости футбола</p>
-			<Button onClick={loadData}>Загрузить новости</Button>
+			<Button 
+				color="primary"
+				onClick={loadData}
+				variant="outlined"
+			>
+				Загрузить новости
+			</Button>
 
-			<div className="bordered">
+			<div className="bordered newscontainer">
 			{newsList?.length ? (
 				newsList.map((newsItem) => (
 					<Card 
-						style={{displey: 'flex'}}
-						// button
-						// component='a'
-						link={newsItem.matchviewUrl}
+						key={newsItem.matchviewUrl}
+						href={newsItem.matchviewUrl}
 					>
 						<CardActionArea className='flexed'>
 							<CardMedia
-								style={{height: '250px', width: '350px'}}
 								component="img"
-								alt="Contemplative Reptile"
-								object-fit="contein"
+								alt="Preview"
 								image={ newsItem.thumbnail }
-								title="Contemplative Reptile"
 							/>
 							<CardContent>
 								<Typography variant="body2" color="textSecondary" component="p">
@@ -47,23 +48,10 @@ const dispatch = useDispatch()
 								<Typography gutterBottom variant="h5" component="h5">
 									{  newsItem.title }
 								</Typography>
-								{/* <Typography variant="body2" color="textSecondary" component="p">
-									{  newsItem.matchviewUrl }	
-								</Typography> */}
+
 							</CardContent>
 						</CardActionArea>
-						{/* <CardActions>
-							<Button size="small" color="primary">
-								Share
-							</Button>
-							<Button size="small" color="primary">
-								Learn More
-							</Button>
-						</CardActions> */}
 					</Card>
-					// <li key={newsItem.id}>
-					// 	<p>{newsItem.title}</p>
-					// </li>
 				))
 			):null}
 			</div>
