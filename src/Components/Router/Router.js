@@ -1,30 +1,49 @@
-import React from 'react'
+import firebase from 'firebase'
+import React, { useEffect, useState } from 'react'
 import { Switch, Route, Redirect } from 'react-router'
+import PublicRoute from './PublicRoute'
+import PrivateRoute from './PrivateRoute'
 import Home from '../Home/Home'
+import {Registration} from '../Registration/Registration'
 import News from '../News/News'
 import Profile from '../Profile/Profile'
 import Chats from '../ChatsList/ChatsList'
 import { PATHS } from '../Constants'
 
 export default function Router() {
+	const [ authed, setAuthed ] = useState(false)
+
+	useEffect(() => {
+		firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+				setAuthed(true)
+			} else {
+				setAuthed(false)
+			}
+		})
+	}, [])
+
 	return (
 			<Switch>
 				<Redirect from="/react" to={PATHS.homeLink}/>
-				<Route exact path={PATHS.homeLink}>
+				<PublicRoute authenticated={authed} exact path={PATHS.loginLink}>
+					<Registration />
+				</PublicRoute>				
+				<PublicRoute authenticated={authed} exact path={PATHS.homeLink}>
 					<Home />
-				</Route>
-				<Route exact path={PATHS.chatsLink}>
+				</PublicRoute>
+				<PrivateRoute authenticated={authed} exact path={PATHS.chatsLink}>
 					<Chats />
-				</Route>
-				<Route path={`${PATHS.chatsLink}/:chatId`}>
+				</PrivateRoute>
+				<PrivateRoute authenticated={authed} path={`${PATHS.chatsLink}/:chatId`}>
 					<Chats />
-				</Route>
-				<Route path={PATHS.profileLink}>
+				</PrivateRoute>
+				<PrivateRoute authenticated={authed} path={PATHS.profileLink}>
 					<Profile />
-				</Route>
-				<Route path={PATHS.newsLink}>
+				</PrivateRoute>
+				<PublicRoute authenticated={authed} path={PATHS.newsLink}>
 					<News />
-				</Route>
+				</PublicRoute>
 				<Route>
 					<p>404: not found</p>
 				</Route>

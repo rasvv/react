@@ -14,6 +14,7 @@ function App() {
 					<Link to={PATHS.chatsLink}>Чаты</Link>
 					<Link to={PATHS.profileLink}>Профиль</Link>
 					<Link to={PATHS.newsLink}>Футбол</Link>
+					<Link to={PATHS.loginLink}>Вход</Link>
 				</div>
 			</header>
 				<Router	/>

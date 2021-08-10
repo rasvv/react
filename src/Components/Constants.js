@@ -2,7 +2,8 @@ export const PATHS = {
 	homeLink: "/",
 	chatsLink: "/chats",
 	profileLink: "/profile",
-	newsLink: "/news"
+	newsLink: "/news",
+	loginLink: "/login"
 }
 
 // export const API_URL = 'https://api.spaceflightnewsapi.net/v3/articles'

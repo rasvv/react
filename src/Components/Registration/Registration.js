@@ -1,5 +1,5 @@
-import { useState } from "react"
 import firebase from 'firebase'
+import { useState } from "react"
 import { Input, Button } from '@material-ui/core'
 
 export const Registration = () => {
@@ -8,6 +8,7 @@ export const Registration = () => {
 	const [ error, setError ] = useState('')
 
 	const onEmailChange = (e) => {
+		console.log(e.target.value)
 		setEmail(e.target.value)
 	}
 
@@ -33,7 +34,7 @@ export const Registration = () => {
 					name='email'
 					type='email'
 					onChange={onEmailChange}
-					value='email'
+					value={email}
 				/>
 
 				<Input 
@@ -41,15 +42,16 @@ export const Registration = () => {
 					name='password'
 					type='password'
 					onChange={onPasswordChange}
-					value='password'
+					value={password}
 				/>
-
-				<Button
-					type='submit'
-				>
-					Login
-				</Button>
-
+				<div>
+					{error && <p>{error}</p>}
+					<Button
+						type='submit'
+					>
+						Login
+					</Button>
+				</div>
 			</form>
 		</div>
 	)
