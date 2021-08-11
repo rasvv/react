@@ -26,12 +26,12 @@ export default function Router() {
 	return (
 			<Switch>
 				<Redirect from="/react" to={PATHS.homeLink}/>
-				<PublicRoute authenticated={authed} exact path={PATHS.loginLink}>
+				<Route authenticated={authed} exact path={PATHS.loginLink}>
 					<Registration />
-				</PublicRoute>				
-				<PublicRoute authenticated={authed} exact path={PATHS.homeLink}>
+				</Route>				
+				<Route authenticated={authed} exact path={PATHS.homeLink}>
 					<Home />
-				</PublicRoute>
+				</Route>
 				<PrivateRoute authenticated={authed} exact path={PATHS.chatsLink}>
 					<Chats />
 				</PrivateRoute>
@@ -41,9 +41,9 @@ export default function Router() {
 				<PrivateRoute authenticated={authed} path={PATHS.profileLink}>
 					<Profile />
 				</PrivateRoute>
-				<PublicRoute authenticated={authed} path={PATHS.newsLink}>
+				<Route path={PATHS.newsLink}>
 					<News />
-				</PublicRoute>
+				</Route>
 				<Route>
 					<p>404: not found</p>
 				</Route>

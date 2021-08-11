@@ -1,18 +1,23 @@
 import "./ChatsList.sass"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { List, ListItem, IconButton, Input } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Chat from '../Chat/Chat'
 import {useSelector, useDispatch} from 'react-redux'
 import { getChatsData } from '../../store/chats/selectors'
 import { useHistory } from "react-router"
-import { deleteChat, addChat } from '../../store/chats/actions'
+import { deleteChatfromDB, addChatToDB, subscribeChatsChanging } from '../../store/chats/actions'
 
 function ChatsList() {
 	const { chatsList, chatsCount } = useSelector(getChatsData)
 	const [name, setName] = useState('')
 	const dispatch = useDispatch()
 	const history = useHistory()
+
+
+	useEffect(() => {
+		dispatch(subscribeChatsChanging())
+	}, [])
 
 	const onChatListClick = (chat) => {
 		history.push(`/chats/${chat.id}`)
@@ -21,7 +26,7 @@ function ChatsList() {
 	const onDeleteChatClick = (chatId) => {
 		history.push(`/chats/chat1`)
 		dispatch(
-			deleteChat(chatId)
+			deleteChatfromDB(chatId)
 		)
 	}
 
@@ -41,7 +46,7 @@ function ChatsList() {
 
 	const handlerOnClick = (name) => {
 		dispatch(
-			addChat(
+			addChatToDB(
 				`chat${chatsCount+1}`, 
 				name,
 				chatsCount+1,
